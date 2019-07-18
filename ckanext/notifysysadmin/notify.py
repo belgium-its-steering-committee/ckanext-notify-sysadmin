@@ -28,7 +28,7 @@ def notify_sysadmins(sysadmins, entity):
         try:
             mail_user(sysadmin, subject, message)
         except Exception as e:
-            log.exception("Mail (notify_sysadmins) could not be sent", e)
+            log.exception("Mail (notify_sysadmins) could not be sent")
 
 
 def print_notification(entity):
