@@ -1,5 +1,6 @@
 import logging
 
+from ckan.common import config
 from ckan.lib.mailer import mail_user
 
 log = logging.getLogger(__name__)
@@ -8,16 +9,21 @@ NOTIFICATION_SPACING = 45
 
 
 def notify_sysadmins(sysadmins, entity):
+    site_url = config.get('ckan.site_url', "")
+    organization_url = "{0}/organization/{1}"
     subject = "New organization {0} created!".format(entity.title)
     message = """
     A new organization {0} has been created on {1}.
     As a system administrator, you can delete this organization if it doesn't fulfill the required standards. 
     
+    {2}
+    
     Regards
-    """.format(entity.title, entity.created.strftime("%d-%m-%Y, %H:%M:%S"))
-    print("#"*35)
-    print(entity)
-    print("#"*35)
+    """.format(
+        entity.title,
+        entity.created.strftime("%d-%m-%Y, %H:%M:%S"),
+        organization_url.format(site_url, entity.name)
+    )
     for sysadmin in sysadmins:
         try:
             mail_user(sysadmin, subject, message)
