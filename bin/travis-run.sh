@@ -8,7 +8,7 @@ nosetests --ckan \
           --nologcapture \
           --with-pylons=subdir/test.ini \
           --with-coverage \
-          --cover-package=ckanext.notify-sysadmin \
+          --cover-package=ckanext.notifysysadmin \
           --cover-inclusive \
           --cover-erase \
           --cover-tests

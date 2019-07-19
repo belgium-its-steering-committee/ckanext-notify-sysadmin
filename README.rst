@@ -60,7 +60,7 @@ To install ckanext-notify-sysadmin:
 
      pip install -e  git+https://github.com/belgium-its-steering-committee/ckanext-notify-sysadmin#egg=ckanext-notify-sysadmin
 
-3. Add ``notify-sysadmin`` to the ``ckan.plugins`` setting in your CKAN
+3. Add ``notifysysadmin`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
    ``/etc/ckan/default/production.ini``).
 
