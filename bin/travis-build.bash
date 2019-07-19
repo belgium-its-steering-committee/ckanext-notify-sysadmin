@@ -34,7 +34,7 @@ cd -
 
 echo "Installing ckanext-notifysysadmin and its requirements..."
 python setup.py develop
-pip install -r travis-dev-requirements.txt.txt
+pip install -r travis-dev-requirements.txt
 
 echo "Moving test.ini into a subdir..."
 mkdir subdir
