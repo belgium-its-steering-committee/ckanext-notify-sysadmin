@@ -3,6 +3,8 @@ import logging
 from ckan.common import config
 from ckan.lib.mailer import mail_user
 
+from ckanext.notifysysadmin.sqs import send_sqs_message
+
 log = logging.getLogger(__name__)
 
 NOTIFICATION_SPACING = 45
@@ -26,7 +28,7 @@ def notify_sysadmins(sysadmins, entity):
     )
     for sysadmin in sysadmins:
         try:
-            mail_user(sysadmin, subject, message)
+            send_sqs_message(sysadmin, subject, message)
         except Exception as e:
             log.exception("Mail (notify_sysadmins) could not be sent")
 
