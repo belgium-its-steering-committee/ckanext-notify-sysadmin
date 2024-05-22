@@ -1,8 +1,6 @@
 import logging
-
-from ckan.common import config
-from ckan.lib.mailer import mail_user
-
+from ckan.plugins import toolkit #type:ignore
+#TODO make/use helper for send_sqs_message
 from ckanext.notifysysadmin.sqs import send_sqs_message
 
 log = logging.getLogger(__name__)
@@ -11,7 +9,7 @@ NOTIFICATION_SPACING = 45
 
 
 def notify_sysadmins(sysadmins, entity):
-    site_url = config.get('ckan.site_url', "")
+    site_url = toolkit.config.get('ckan.site_url', "")
     organization_url = "{0}/organization/{1}"
     subject = u"New organization {0} created!".format(entity.title)
     message = u"""
@@ -29,8 +27,10 @@ def notify_sysadmins(sysadmins, entity):
     for sysadmin in sysadmins:
         try:
             send_sqs_message(sysadmin, subject, message)
+            print_notification()
         except Exception as e:
             log.exception("Mail (notify_sysadmins) could not be sent")
+            
 
 
 def print_notification(entity):
