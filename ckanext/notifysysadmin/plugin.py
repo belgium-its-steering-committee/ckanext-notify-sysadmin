@@ -6,7 +6,6 @@ from notify import notify_sysadmins
 
 
 class NotifySysadminPlugin(plugins.SingletonPlugin):
-    plugins.implements(plugins.IConfigurer, inherit=True)
     plugins.implements(plugins.IOrganizationController, inherit=True)
 
     # IOrganizationController
