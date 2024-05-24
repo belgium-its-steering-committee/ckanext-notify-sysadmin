@@ -6,9 +6,10 @@ from notify import notify_sysadmins
 
 
 class NotifySysadminPlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IConfigurer, inherit=True)
     plugins.implements(plugins.IOrganizationController, inherit=True)
 
     # IOrganizationController
     def create(self, entity):
-        sysadmins = get_ckan_sysadmins()
-        notify_sysadmins(sysadmins, entity)
+        sysadminsList = get_ckan_sysadmins()
+        notify_sysadmins(sysadminsList, entity)

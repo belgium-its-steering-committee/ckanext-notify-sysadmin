@@ -9,6 +9,7 @@ NOTIFICATION_SPACING = 45
 
 
 def notify_sysadmins(sysadmins, entity):
+    print("int the stelling")
     site_url = toolkit.config.get('ckan.site_url', "")
     organization_url = "{0}/organization/{1}"
     subject = u"New organization {0} created!".format(entity.title)
@@ -25,11 +26,11 @@ def notify_sysadmins(sysadmins, entity):
         organization_url.format(site_url, entity.name)
     )
     for sysadmin in sysadmins:
-        try:
-            send_sqs_message(sysadmin, subject, message)
-            print_notification()
-        except Exception as e:
-            log.exception("Mail (notify_sysadmins) could not be sent")
+            try:
+                send_sqs_message(sysadmin, subject, message)
+                print_notification(entity)
+            except Exception as e:
+                log.exception("Mail (notify_sysadmins) could not be sent")
             
 
 

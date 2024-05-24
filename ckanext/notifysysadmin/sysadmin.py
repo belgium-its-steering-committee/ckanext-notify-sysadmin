@@ -1,8 +1,9 @@
-from ckan import model
-
+import ckan.model as model #type:ignore
 
 def get_ckan_sysadmins():
-    sysadmins = set(model.Session.query(model.User).filter(model.User.sysadmin == True))
-    sysadmins = set([sysadmin for sysadmin in sysadmins if sysadmin.email
-                     is not None and not sysadmin.email.find("@localhost")])
+    sysadmins = model.Session.query(model.User)\
+        .filter(model.User.sysadmin == True)\
+        .filter(model.User.email != None)\
+        .filter(model.User.email != '')\
+        .all()
     return sysadmins

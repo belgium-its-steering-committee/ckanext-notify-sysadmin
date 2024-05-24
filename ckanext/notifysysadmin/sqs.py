@@ -54,7 +54,8 @@ def send_sqs_message(user, subject, message):
             MessageBody=message
         )
         
-        if response.get("ResponseMetadata") is not None:
+        #if response.get("ResponseMetadata") is not None:
+        if "ResponseMetadata" in response:
             statusCode = response["ResponseMetadata"].get("HTTPStatusCode")
             if statusCode == 200:
                 log.info("New organization creation message send to sysAdmin {0}".format(user.display_name))
