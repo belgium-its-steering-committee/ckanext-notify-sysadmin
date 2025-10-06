@@ -1,3 +1,6 @@
+# ARCHIVED
+This functionality has been implemented via CKAN. This plugin is not useable anymore after moving away from Amazon and sqs.
+
 .. You should enable this project on travis-ci.org and coveralls.io to make
    these badges work. The necessary Travis and Coverage config files have been
    generated for you.
